@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBTT calculator</title>
+    <script>var exports = {};</script>
+    <script src="dist/app.js" defer></script>
+</head>
+<body>
+    <h1> LBTT Calculator </h1>
+
+    <form onsubmit="getTaxFromBackend()">
+        <label for="price">Amount</label><br>
+        <input type="number" id="price" name="purchase_price" value="0.00" min="0.00" step="0.01"><br>
+        <p>Are you applying for the first-time buyer relief?</p>
+        <input type="radio" id="yes" name="is_first_buyer" value=1>
+        <label for="yes">Yes</label><br>
+        <input type="radio" id="no" name="is_first_buyer" value=0, checked="checked">
+        <label for="css">No</label><br>
+        <br>
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
