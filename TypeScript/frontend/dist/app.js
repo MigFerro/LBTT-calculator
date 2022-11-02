@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const BASE_URL = 'http://localhost:8080';
 const getTaxFromBackend = () => __awaiter(void 0, void 0, void 0, function* () {
     let price = document.getElementById('price').value;
     var radios = document.getElementsByName('is_first_buyer');
@@ -20,7 +21,7 @@ const getTaxFromBackend = () => __awaiter(void 0, void 0, void 0, function* () {
             break;
         }
     }
-    const response = yield fetch('http://localhost:8080/api/calculate?price=' + price + '&fb=' + radio_value);
+    const response = yield fetch(BASE_URL + '/api/calculate?price=' + price + '&fb=' + radio_value);
     const data = yield response.json();
     console.log(data);
     if (response.ok) {
@@ -42,5 +43,10 @@ const getTaxFromBackend = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('response not ok');
     }
     return true;
+});
+const getTaxBands = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(BASE_URL + '/api/bands');
+    const bands = yield response.json();
+    console.log(bands);
 });
 //# sourceMappingURL=app.js.map

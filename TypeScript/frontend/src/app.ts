@@ -1,3 +1,5 @@
+const BASE_URL = 'http://localhost:8080'
+
 const getTaxFromBackend = async () => {
 
     let price = (<HTMLInputElement>document.getElementById('price')).value
@@ -13,7 +15,7 @@ const getTaxFromBackend = async () => {
         }  
     }
 
-    const response = await fetch('http://localhost:8080/api/calculate?price='+price+'&fb='+radio_value)
+    const response = await fetch(BASE_URL + '/api/calculate?price='+price+'&fb='+radio_value)
     const data = await response.json()
     console.log(data)
     if (response.ok) {
@@ -33,4 +35,11 @@ const getTaxFromBackend = async () => {
         console.log('response not ok')
     }
     return true
+}
+
+const getTaxBands = async () => {
+    const response = await fetch(BASE_URL + '/api/bands');
+
+    const bands = await response.json();
+    console.log(bands);
 }

@@ -20,6 +20,10 @@ export class LBTT {
         this.sortRates();
     }
 
+    getBands() {
+        return this.rateBands;
+    }
+
     sortRates() {
         this.rateBands.sort((bandA, bandB) => bandB.threshold - bandA.threshold)
     }
@@ -81,5 +85,20 @@ export const LBTTCalculator_2021 = new LBTT (
 export const calculate = (price: number, is_first_buyer: boolean) => {
     
     let tax = LBTTCalculator_2021.calculateTax(price, is_first_buyer)
+    return tax;
+}
+
+export const request_calculation = (req) => {
+
+    let price = 0;
+    let first_buyer = false;
+    if (req.query.price){
+        price = +req.query.price
+    }
+    if (req.query.fb === '1'){
+        first_buyer = true;
+    } 
+
+    let tax = calculate(price, first_buyer);
     return tax;
 }

@@ -1,4 +1,4 @@
-import { LBTT, RateBand, LBTTCalculator_2021 } from "../calculator_logic";
+import { LBTT, RateBand, LBTTCalculator_2021 } from "../logic/calculator_logic";
 
 test('calculates LBTT with 1 rate band', () => {
   let lbtt = new LBTT(0, new RateBand(50000, 0.05));

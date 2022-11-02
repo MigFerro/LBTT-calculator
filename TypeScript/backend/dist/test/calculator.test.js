@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const calculator_logic_1 = require("../calculator_logic");
+const calculator_logic_1 = require("../logic/calculator_logic");
 test('calculates LBTT with 1 rate band', () => {
     let lbtt = new calculator_logic_1.LBTT(0, new calculator_logic_1.RateBand(50000, 0.05));
     expect(lbtt.calculateTax(150000, false)).toBe((150000 - 50000) * 0.05);

@@ -11,7 +11,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculate = exports.LBTTCalculator_2021 = exports.LBTT = exports.RateBand = void 0;
+exports.request_calculation = exports.calculate = exports.LBTTCalculator_2021 = exports.LBTT = exports.RateBand = void 0;
 class RateBand {
     constructor(threshold, rate) {
         this.threshold = threshold;
@@ -24,6 +24,9 @@ class LBTT {
         this.firstBuyerRelief = firstBuyerRelief;
         this.rateBands = bands;
         this.sortRates();
+    }
+    getBands() {
+        return this.rateBands;
     }
     sortRates() {
         this.rateBands.sort((bandA, bandB) => bandB.threshold - bandA.threshold);
@@ -71,4 +74,17 @@ const calculate = (price, is_first_buyer) => {
     return tax;
 };
 exports.calculate = calculate;
+const request_calculation = (req) => {
+    let price = 0;
+    let first_buyer = false;
+    if (req.query.price) {
+        price = +req.query.price;
+    }
+    if (req.query.fb === '1') {
+        first_buyer = true;
+    }
+    let tax = (0, exports.calculate)(price, first_buyer);
+    return tax;
+};
+exports.request_calculation = request_calculation;
 //# sourceMappingURL=calculator_logic.js.map
