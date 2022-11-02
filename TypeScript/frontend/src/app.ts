@@ -12,20 +12,17 @@ const getTaxFromBackend = async () => {
         let radio = <HTMLInputElement>document.getElementsByName("is_first_buyer")[i];
         if (radio.checked) {
             radio_value = radio.value;
-            console.log('radio value: ', radio_value)
             break;
         }  
     }
 
     const response = await fetch(BASE_URL + '/api/calculate?price='+price+'&fb='+radio_value)
     const data = await response.json()
-    console.log(data)
+    
     if (response.ok) {
-        console.log("response ok")
         let tax = -1
         tax = data?.tax_value
         if (tax != -1) {
-            console.log('tax ok', tax)
             alert(tax)
         } else {
             console.log(tax)
@@ -43,7 +40,6 @@ const getTaxBands = async (selector: JQuery) => {
     const response = await fetch(BASE_URL + '/api/bands');
 
     const bands = await response.json();
-    console.log(bands);
 
     buildRatesTable(selector, bands)
     
@@ -55,13 +51,14 @@ type rateBand = {
 }
 
 const buildRatesTable = (selector: JQuery, rateBands: rateBand[]) => {
+    $(selector).empty(); 
     for (let i = rateBands.length - 1; i >= 0; i--) {
         let row = $('<tr/>');
 
         if (i == 0) {
             row.append($('<td/>').html("above " + "£" + rateBands[i].threshold));
         } else {
-            row.append($('<td/>').html("£" + rateBands[i-1].threshold + " - " + "£" + rateBands[i].threshold));
+            row.append($('<td/>').html("£" + rateBands[i].threshold + " - " + "£" + rateBands[i-1].threshold));
         }
 
         row.append($('<td/>').html(100*+rateBands[i].rate + " %"));
