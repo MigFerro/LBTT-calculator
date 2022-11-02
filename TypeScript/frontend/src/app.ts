@@ -50,8 +50,8 @@ const getTaxBands = async (selector: JQuery) => {
 }
 
 type rateBand = {
-    "threshold",
-    "rate"
+    "threshold": string,
+    "rate": string
 }
 
 const buildRatesTable = (selector: JQuery, rateBands: rateBand[]) => {
