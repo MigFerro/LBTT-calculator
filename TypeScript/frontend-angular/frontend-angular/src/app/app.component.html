@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+
+<h1>LBTT Calculator</h1>
+
+<form [formGroup]="taxForm" (ngSubmit)="getTax()">
+
+    <input id="price" type="number" formControlName="price" min="0.00" value="0.00" step="0.01">
+    <br><br>
+    <p>Are you applying for the first-time buyer relief?</p>
+    <input type="radio" id="yes" name="firstBuyer" value=1 formControlName="firstBuyer">
+    <label for="yes">Yes</label><br>
+    <input type="radio" id="no" name="firstBuyer" value=0 checked="checked" formControlName="firstBuyer">
+    <label for="no">No</label><br>
+    <br><br>
+    <button class="button" type="submit">Calculate Tax</button>
+  
+  </form>
+<br>
+
