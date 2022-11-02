@@ -1,1 +1,1 @@
-{"version":3,"file":"bands.js","sourceRoot":"","sources":["../src/bands.ts"],"names":[],"mappings":""}
+{"version":3,"file":"bands.js","sourceRoot":"","sources":["../src/bands.ts"],"names":[],"mappings":";;;AAEO,MAAM,eAAe,GAAG,CAAC,QAAgB,EAAE,SAAqB,EAAE,EAAE;IACvE,KAAK,IAAI,CAAC,GAAG,CAAC,EAAE,CAAC,GAAG,SAAS,CAAC,MAAM,EAAE,CAAC,EAAE,EAAE;QACvC,wBAAwB;QAExB,+DAA+D;QAC/D,0DAA0D;QAE1D,2BAA2B;QAE3B,CAAC,QAAQ,CAAC,CAAC,MAAM,CAAC,uBAAuB,CAAC,CAAA;KAC7C;AACL,CAAC,CAAA;AAXY,QAAA,eAAe,mBAW3B"}

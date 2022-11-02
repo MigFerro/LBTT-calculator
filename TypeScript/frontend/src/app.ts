@@ -1,3 +1,5 @@
+//import { buildRatesTable } from "./bands"
+
 const BASE_URL = 'http://localhost:8080'
 
 const getTaxFromBackend = async () => {
@@ -37,9 +39,34 @@ const getTaxFromBackend = async () => {
     return true
 }
 
-const getTaxBands = async () => {
+const getTaxBands = async (selector: JQuery) => {
     const response = await fetch(BASE_URL + '/api/bands');
 
     const bands = await response.json();
     console.log(bands);
+
+    buildRatesTable(selector, bands)
+    
+}
+
+type rateBand = {
+    "threshold",
+    "rate"
+}
+
+const buildRatesTable = (selector: JQuery, rateBands: rateBand[]) => {
+    for (let i = rateBands.length - 1; i >= 0; i--) {
+        let row = $('<tr/>');
+
+        if (i == 0) {
+            row.append($('<td/>').html("above " + "£" + rateBands[i].threshold));
+        } else {
+            row.append($('<td/>').html("£" + rateBands[i-1].threshold + " - " + "£" + rateBands[i].threshold));
+        }
+
+        row.append($('<td/>').html(100*+rateBands[i].rate + " %"));
+
+        $(selector).append(row);
+
+    }
 }

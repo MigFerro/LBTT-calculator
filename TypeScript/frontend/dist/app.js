@@ -1,4 +1,5 @@
 "use strict";
+//import { buildRatesTable } from "./bands"
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -44,9 +45,23 @@ const getTaxFromBackend = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     return true;
 });
-const getTaxBands = () => __awaiter(void 0, void 0, void 0, function* () {
+const getTaxBands = (selector) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch(BASE_URL + '/api/bands');
     const bands = yield response.json();
     console.log(bands);
+    buildRatesTable(selector, bands);
 });
+const buildRatesTable = (selector, rateBands) => {
+    for (let i = rateBands.length - 1; i >= 0; i--) {
+        let row = $('<tr/>');
+        if (i == 0) {
+            row.append($('<td/>').html("above " + "£" + rateBands[i].threshold));
+        }
+        else {
+            row.append($('<td/>').html("£" + rateBands[i - 1].threshold + " - " + "£" + rateBands[i].threshold));
+        }
+        row.append($('<td/>').html(100 * +rateBands[i].rate + " %"));
+        $(selector).append(row);
+    }
+};
 //# sourceMappingURL=app.js.map
