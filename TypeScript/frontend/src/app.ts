@@ -41,7 +41,6 @@ const getTaxFromBackend = async () => {
 
 const getTaxBands = async (selector: JQuery) => {
     const response = await fetch(BASE_URL + '/api/bands');
-
     const bands = await response.json();
     console.log(bands);
 
@@ -55,6 +54,7 @@ type rateBand = {
 }
 
 const buildRatesTable = (selector: JQuery, rateBands: rateBand[]) => {
+    $(selector).empty();
     for (let i = rateBands.length - 1; i >= 0; i--) {
         let row = $('<tr/>');
 

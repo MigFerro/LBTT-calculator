@@ -52,6 +52,7 @@ const getTaxBands = (selector) => __awaiter(void 0, void 0, void 0, function* ()
     buildRatesTable(selector, bands);
 });
 const buildRatesTable = (selector, rateBands) => {
+    $(selector).empty();
     for (let i = rateBands.length - 1; i >= 0; i--) {
         let row = $('<tr/>');
         if (i == 0) {
